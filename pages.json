@@ -71,6 +71,12 @@
 			"style": {
 				"navigationBarTitleText": "支付"
 			}
+		},
+		{
+			"path": "pages/pOrder/pOrder",
+			"style": {
+				"navigationBarTitleText": "发布订单"
+			}
 		}
 	],
 	"tabBar": {

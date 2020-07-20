@@ -33,7 +33,7 @@
 			
 		</view>
 
-		<image src="../../static/立即%20下单@3x.png" mode="" class="btns"></image>
+		<image src="../../static/立即%20下单@3x.png" mode="" class="btns" @tap="toOrder"></image>
 	</view>
 </template>
 
@@ -83,7 +83,7 @@
 				console.log('r=========', r)
 				if (r.data.Status == 1) {
 					this.list = r.data.Data.Rows
-
+					
 				} else {
 					uni.showToast({
 						title: r.data.Memo,
@@ -91,6 +91,11 @@
 					})
 				}
 			},
+			toOrder(){
+				uni.navigateTo({
+					url:'../pOrder/pOrder'
+				})
+			}
 			
 		}
 	}
