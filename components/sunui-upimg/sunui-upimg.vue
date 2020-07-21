@@ -31,7 +31,7 @@ export default {
 		// 服务器url
 		url: {
 			type: String,
-			default: 'https://a3.dns06.net.cn/app/index.php?i=2&c=entry&a=wxapp&do=Upload_qiniu_b&m=jzwx_a'
+			default: 'https://api.baohaoyou88.com/ashx/upload.ashx'
 		},
 		// 上传样式宽高
 		upload_img_wh: {
@@ -92,7 +92,7 @@ export default {
 				return promisify(upload)({
 					url: _self.url,
 					path: path,
-					name: 'file',
+					name: 'filePath',
 					extra: header,
 					_self: _self
 				});
@@ -328,6 +328,7 @@ const upload = function(options) {
 .sunui-uploader-bd {
 	padding: 26rpx;
 	margin: 0;
+	background-color:#FFFFFF;
 }
 
 .sunui-uploader-files {

@@ -9642,13 +9642,13 @@ if (hadRuntime) {
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.default = exports.WeChatPay_work = exports.GetOpenId_work = exports.AddQianfeng = exports.FeedBack = exports.getMessageList = exports.GetFactoryList = exports.GetMobileCode = exports.login = exports.picUrl = exports.test = void 0;var _interface = _interopRequireDefault(__webpack_require__(/*! ./interface */ 18));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
+Object.defineProperty(exports, "__esModule", { value: true });exports.default = exports.CreateOrder = exports.WeChatPay_work = exports.GetOpenId_work = exports.AddQianfeng = exports.FeedBack = exports.getMessageList = exports.GetFactoryList = exports.GetMobileCode = exports.login = exports.picUrl = exports.test = void 0;var _interface = _interopRequireDefault(__webpack_require__(/*! ./interface */ 18));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
 
 /**
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        * 将业务所有接口统一起来便于维护
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        * 如果项目很大可以将 url 独立成文件，接口分成不同的模块
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        * 
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        */
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              * 将业务所有接口统一起来便于维护
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              * 如果项目很大可以将 url 独立成文件，接口分成不同的模块
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              * 
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              */
 
 // 单独导出(测试接口) import {test} from '@/common/vmeitime-http/'
 var test = function test(data) {
@@ -9672,7 +9672,7 @@ var test = function test(data) {
     data: data });
 
 };exports.test = test;
-var picUrl = 'http://120.53.125.114:8002/ashx';exports.picUrl = picUrl;
+var picUrl = 'https://api.baohaoyou88.com/ashx';exports.picUrl = picUrl;
 var login = function login(data) {
   return _interface.default.request({
     url: 'Login',
@@ -9739,10 +9739,19 @@ var WeChatPay_work = function WeChatPay_work(data) {
     data: data
     // handle:true
   });
+};exports.WeChatPay_work = WeChatPay_work;
+var CreateOrder = function CreateOrder(data) {
+  return _interface.default.request({
+    url: 'CreateOrder',
+    method: 'POST',
+    data: data
+    // handle:true
+  });
 };
 
+
 // 默认全部导出  import api from '@/common/vmeitime-http/'
-exports.WeChatPay_work = WeChatPay_work;var _default = {
+exports.CreateOrder = CreateOrder;var _default = {
   login: login,
   // getOrderList,
   getMessageList: getMessageList,
@@ -9752,7 +9761,8 @@ exports.WeChatPay_work = WeChatPay_work;var _default = {
   GetOpenId_work: GetOpenId_work,
   WeChatPay_work: WeChatPay_work,
   GetMobileCode: GetMobileCode,
-  GetFactoryList: GetFactoryList };exports.default = _default;
+  GetFactoryList: GetFactoryList,
+  CreateOrder: CreateOrder };exports.default = _default;
 
 /***/ }),
 /* 18 */

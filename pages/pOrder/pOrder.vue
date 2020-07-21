@@ -8,10 +8,15 @@
 		<view class="listBox">
 			<view class="list flexYc flexXb">
 				<text>请选择到厂时间</text>
-				<picker mode="time" :value="time" start="09:01" end="21:01" @change="bindTimeChange">
-					<view class="uni-input">{{time}}</view>
-				</picker>
-
+				
+				<view class="uni-list-cell-db flex">
+					<picker mode="date" :value="date" :start="startDate" :end="endDate" @change="bindDateChange">
+						<view class="uni-input">{{date}}</view>
+					</picker>
+					<picker mode="time" :value="time" start="09:01" end="21:01" @change="bindTimeChange">
+						<view class="uni-input">{{time}}</view>
+					</picker>
+				</view>
 
 			</view>
 			<view class="list flexYc flexXb">
@@ -23,7 +28,7 @@
 				<input type="text" value="" @input="driver" placeholder-style="text-align:right" placeholder="请填写驾驶员姓名" />
 			</view>
 			<view class="list flexYc flexXb">
-				<text>随车电话</text> 
+				<text>随车电话</text>
 				<input type="text" value="" @input="phone" placeholder-style="text-align:right" placeholder="请填写随车电话" />
 			</view>
 			<view class="list flexYc flexXb">
@@ -31,27 +36,52 @@
 				<input type="text" value="" @input="carNumber" placeholder-style="text-align:right" placeholder="请填写车牌号" />
 			</view>
 		</view>
+		<sunui-upimg @change="getImageInfo1" :upload_auto="true" ref="upimg1" :upload_count="2"></sunui-upimg>
+		<view class="title">
+			请选择监督工作项
+		</view>
+		<view class="bg">
+			<view class="line flexXb flexYc">
+				<text>清罐：</text>
+				<jiuaiCheckbox @change='changeBox1' value="自定义的一个value" :checked="true" :checkBoxSize='40' :borderRadius='30'></jiuaiCheckbox>
+			</view>
+			<view class="line flexXb flexYc">
+				<text>铅封：</text>
+				<jiuaiCheckbox @change='changeBox2' value="自定义的一个value" :checked="true" :checkBoxSize='40' :borderRadius='30'></jiuaiCheckbox>
+			</view>
+		</view>
+		<view class="btnsubmit" @tap="freeTell">
+			立即发布
+		</view>
 	</view>
 </template>
 
 <script>
 	import xflSelect from '../../components/xfl-select/xfl-select.vue';
 	import sunUiUpimg from '@/components/sunui-upimg/sunui-upimg.vue';
+	import jiuaiCheckbox from "@/components/jiuai-checkbox/jiuai-checkbox.vue";
+
 	export default {
 		components: {
 			xflSelect,
-			sunUiUpimg
+			sunUiUpimg,
+			jiuaiCheckbox
 		},
 		data() {
+			const currentDate = this.getDate({
+				format: true
+			})
 			return {
 				placeholder: '请选择工厂',
 				listBoxStyle: `height: 40px; font-size: 16px;`,
 				list: [],
-				time:'',
-				wupin:'',
-				driver:'',
-				phone:'',
-				carNumber:''
+				time: '00:00',
+				goodsName: '',
+				driverName: '',
+				mobile: '',
+				carNumber: '',
+				factoryId: '',
+				date: currentDate,
 			}
 		},
 		onLoad() {
@@ -81,37 +111,88 @@
 				orignItem
 			}) {
 				console.log(newVal, oldVal, index, orignItem);
+				this.factoryId = orignItem.id
 			},
 			bindTimeChange(e) {
 				this.time = e.target.value
 			},
-			wupin(e){
-				this.wupin = e.detail.value
+			wupin(e) {
+				this.goodsName = e.detail.value
 			},
-			driver(e){
-				this.driver = e.detail.value
+			driver(e) {
+				this.driverName = e.detail.value
 			},
-			phone(e){
-				this.phone = e.detail.value
+			phone(e) {
+				this.mobile = e.detail.value
 			},
-			carNumber(e){
+			carNumber(e) {
 				this.carNumber = e.detail.value
 			},
+			//picurl
+			getImageInfo1(e) {
+				console.log('图片返回1：', e)
+			},
+			changeBox1(e) { //选中切换事件(由组件发起)
+				console.log('点击了checkBox', e);
+				uni.showToast({
+					'title': "点击结果" + e.detail.checked
+				})
+			},
+			changeBox2(e) { //选中切换事件(由组件发起)
+				console.log('点击了checkBox', e);
+				uni.showToast({
+					'title': "点击结果" + e.detail.checked
+				})
+			},
+			bindDateChange: function(e) {
+				this.date = e.target.value
+			},
+			// tijiaofabu
+			async freeTell(){
+				const data = {
+					factoryId:this.factoryId,
+					daochangTime:this.date + this.time,
+					goodsName:this.goodsName,
+					driverName:this.driverName,
+					mobile:this.mobile,
+					carNumber:this.carNumber,
+					userId:uni.getStorageSync('userInfo').user_id
+				}
+				const r = await this.$api.CreateOrder(data)
+				console.log('r==============',r)
+			},
+			getDate(type) {
+				const date = new Date();
+				let year = date.getFullYear();
+				let month = date.getMonth() + 1;
+				let day = date.getDate();
+
+				if (type === 'start') {
+					year = year - 60;
+				} else if (type === 'end') {
+					year = year + 2;
+				}
+				month = month > 9 ? month : '0' + month;;
+				day = day > 9 ? day : '0' + day;
+				return `${year}-${month}-${day}`;
+			}
 		},
 	}
 </script>
 
 <style>
-	page {
-		height: 100%;
-
-	}
+	page {}
 
 	.content {
-		height: 100%;
+
 		background-color: #F6F6F6;
 
 		padding-top: 22upx;
+	}
+
+	.bg {
+		background-color: #FFFFFF;
+
 	}
 
 	.searchBox {
@@ -139,13 +220,45 @@
 		font-size: 28upx;
 		color: #CACACA;
 	}
-	.uni-input{
+
+	.uni-input {
 		height: 100upx;
 		width: 200upx;
 		line-height: 100upx;
 		text-align: right;
 		font-size: 28upx;
 		color: #CACACA;
-		
+
+	}
+
+	.title {
+		font-size: 26upx;
+		height: 65upx;
+		line-height: 65upx;
+		background-color: #EEEEEE;
+		margin-left: 18upx;
+	}
+
+	.line {
+		height: 110upx;
+		margin: 0 20upx;
+		border-bottom: 2upx solid#DCDCDC;
+		background-color: #FFFFFF;
+		font-size: 30upx;
+	}
+
+	.btnsubmit {
+		position: absolute;
+		/* bottom: 60upx; */
+		left: 20upx;
+		height: 84upx;
+		width: 710upx;
+		border-radius: 10upx;
+		color: #FFFFFF;
+		text-align: center;
+		line-height: 84upx;
+		background-color: #005EA1;
+		font-size: 32upx;
+		margin: 41upx 0;
 	}
 </style>

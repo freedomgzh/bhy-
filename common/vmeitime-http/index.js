@@ -28,7 +28,7 @@ export const test = (data) => {
         data,
     })
 }
-export const picUrl = 'http://120.53.125.114:8002/ashx'
+export const picUrl = 'https://api.baohaoyou88.com/ashx'
 export const login = (data) => {
     return http.request({
         url: 'Login',
@@ -96,6 +96,15 @@ export const WeChatPay_work = (data) => {
 		// handle:true
     })
 }
+export const CreateOrder = (data) => {
+    return http.request({
+        url:'CreateOrder',
+		method: 'POST', 
+        data,
+		// handle:true
+    })
+}
+
 
 // 默认全部导出  import api from '@/common/vmeitime-http/'
 export default {
@@ -108,5 +117,6 @@ AddQianfeng,
 GetOpenId_work,
 WeChatPay_work,
 GetMobileCode,
-GetFactoryList
+GetFactoryList,
+CreateOrder
 }
