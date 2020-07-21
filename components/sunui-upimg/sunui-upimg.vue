@@ -88,13 +88,23 @@ export default {
 	methods: {
 		upImage(paths,header) {
 			let _self = this;
+			console.log('paths======',paths)
 			const promises = paths.map(function(path) {
+				
 				return promisify(upload)({
 					url: _self.url,
 					path: path,
 					name: 'filePath',
-					extra: header,
-					_self: _self
+					fileType: "image",
+					filePath: path,
+					formData: {
+						filePath:path,
+					},
+					header:{
+							'Content-Type':'multipart/form-data'
+						},
+					// extra: header,
+					// _self: _self
 				});
 			});
 
@@ -109,6 +119,7 @@ export default {
 					_self.emit();
 				})
 				.catch(function(res) {
+					console.log('err==========',res)
 					uni.hideLoading();
 				});
 		},
@@ -218,13 +229,13 @@ const upload = function(options) {
 			}
 		}
 	});
-	uploadTask.onProgressUpdate(async function(res) {
-		for (let i = 0, len = _self.upload_before_list.length; i < len; i++) {
-			_self.upload_before_list[i]['upload_percent'] = await res.progress;
-		}
-		_self.upload_before_list = _self.upload_before_list;
-		_self.upload_len = _self.upload_before_list.length;
-	});
+	// uploadTask.onProgressUpdate(async function(res) {
+	// 	for (let i = 0, len = _self.upload_before_list.length; i < len; i++) {
+	// 		_self.upload_before_list[i]['upload_percent'] = await res.progress;
+	// 	}
+	// 	_self.upload_before_list = _self.upload_before_list;
+	// 	_self.upload_len = _self.upload_before_list.length;
+	// });
 };
 </script>
 
