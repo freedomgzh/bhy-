@@ -94,7 +94,7 @@ export default {
 				return promisify(upload)({
 					url: _self.url,
 					path: path,
-					name: 'filePath',
+					name: 'file',
 					fileType: "image",
 					filePath: path,
 					formData: {
@@ -104,7 +104,7 @@ export default {
 							'Content-Type':'multipart/form-data'
 						},
 					// extra: header,
-					// _self: _self
+					_self: _self
 				});
 			});
 
@@ -115,9 +115,11 @@ export default {
 			Promise.all(promises)
 				.then(function(data) {
 					uni.hideLoading();
+					console.log('data=====',promises,data)
 					_self.upload_cache_list.push(...data);
 					_self.emit();
 				})
+				
 				.catch(function(res) {
 					console.log('err==========',res)
 					uni.hideLoading();
@@ -207,7 +209,7 @@ const upload = function(options) {
 			console.warn('sunui-upimg - 如发现没有获取到返回值请到源码191行修改后端返回图片路径以便正常使用插件', JSON.parse(data));
 			try {
 				//Tip : 切记->主要修改这里图片的返回值为真实返回路径!!! 详情见示例
-				data = JSON.parse(res.data).info;
+				data = JSON.parse(res.data).Data.path;
 			} catch (e) {
 				throw (e, data);
 			}
@@ -229,13 +231,13 @@ const upload = function(options) {
 			}
 		}
 	});
-	// uploadTask.onProgressUpdate(async function(res) {
-	// 	for (let i = 0, len = _self.upload_before_list.length; i < len; i++) {
-	// 		_self.upload_before_list[i]['upload_percent'] = await res.progress;
-	// 	}
-	// 	_self.upload_before_list = _self.upload_before_list;
-	// 	_self.upload_len = _self.upload_before_list.length;
-	// });
+	uploadTask.onProgressUpdate(async function(res) {
+		for (let i = 0, len = _self.upload_before_list.length; i < len; i++) {
+			_self.upload_before_list[i]['upload_percent'] = await res.progress;
+		}
+		_self.upload_before_list = _self.upload_before_list;
+		_self.upload_len = _self.upload_before_list.length;
+	});
 };
 </script>
 

@@ -53,7 +53,7 @@ export default {
 				
 				console.log('============',that)
 					if(hasLogin){
-						global.api.userinfo({user_id:uni.getStorageSync('userInfo').user_id},function(data){
+						global.api.userinfo({user_id:uni.getStorageSync('userInfo').adminId},function(data){
 							console.log(1111111,data)
 							uni.setStorageSync('userInfo',data)
 							context.commit('setUserinfo', data)

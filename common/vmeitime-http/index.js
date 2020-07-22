@@ -104,7 +104,22 @@ export const CreateOrder = (data) => {
 		// handle:true
     })
 }
-
+export const WeChatPay = (data) => {
+    return http.request({
+        url:'WeChatPay',
+		method: 'POST', 
+        data,
+		// handle:true
+    })
+}
+export const GetOpenId = (data) => {
+    return http.request({
+        url:'GetOpenId',
+		method: 'POST', 
+        data,
+		// handle:true
+    })
+}
 
 // 默认全部导出  import api from '@/common/vmeitime-http/'
 export default {
@@ -114,9 +129,11 @@ getMessageList,
 picUrl,
 FeedBack,
 AddQianfeng,
-GetOpenId_work,
+
 WeChatPay_work,
 GetMobileCode,
 GetFactoryList,
-CreateOrder
+CreateOrder,
+WeChatPay,
+GetOpenId
 }

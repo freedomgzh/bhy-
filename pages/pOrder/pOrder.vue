@@ -79,9 +79,14 @@
 				goodsName: '',
 				driverName: '',
 				mobile: '',
-				carNumber: '',
+				carNumbers: '',
 				factoryId: '',
 				date: currentDate,
+				carImgs:[],
+				checkOne:false,
+				checkTwo:false,
+				workContent:0,
+				userId:uni.getStorageSync('userInfo').id
 			}
 		},
 		onLoad() {
@@ -126,40 +131,59 @@
 				this.mobile = e.detail.value
 			},
 			carNumber(e) {
-				this.carNumber = e.detail.value
+				this.carNumbers = e.detail.value
 			},
 			//picurl
 			getImageInfo1(e) {
 				console.log('图片返回1：', e)
+				this.carImgs = e
 			},
 			changeBox1(e) { //选中切换事件(由组件发起)
 				console.log('点击了checkBox', e);
-				uni.showToast({
-					'title': "点击结果" + e.detail.checked
-				})
+				this.checkOne = e.detail.checked;
+				
 			},
 			changeBox2(e) { //选中切换事件(由组件发起)
 				console.log('点击了checkBox', e);
-				uni.showToast({
-					'title': "点击结果" + e.detail.checked
-				})
+				this.checkTwo = e.detail.checked;
+				
 			},
 			bindDateChange: function(e) {
 				this.date = e.target.value
 			},
 			// tijiaofabu
 			async freeTell(){
+				if(this.checkOne && this.checkTwo){
+					this.workContent = 2
+				}else if(!this.checkOne && this.checkTwo){
+					this.workContent = 1
+				}if(this.checkOne && !this.checkTwo){
+					this.workContent = 0
+				}
+				console.log('===============',this.userId)
 				const data = {
+					userId:this.userId,
 					factoryId:this.factoryId,
-					daochangTime:this.date + this.time,
+					daochangTime:this.date +  " " + this.time + ":00",
 					goodsName:this.goodsName,
 					driverName:this.driverName,
 					mobile:this.mobile,
-					carNumber:this.carNumber,
-					userId:uni.getStorageSync('userInfo').user_id
+					carNumber:this.carNumbers,
+					
+					carImgs:this.carImgs.join(';') ,
+					workContent:this.workContent
 				}
 				const r = await this.$api.CreateOrder(data)
 				console.log('r==============',r)
+				if (r.data.Status == 1) {
+					this.orderId = r.data.Data.orderId
+					this.getopenid()
+				} else {
+					uni.showToast({
+						title: r.data.Memo,
+						icon: 'none'
+					})
+				}
 			},
 			getDate(type) {
 				const date = new Date();
@@ -175,8 +199,120 @@
 				month = month > 9 ? month : '0' + month;;
 				day = day > 9 ? day : '0' + day;
 				return `${year}-${month}-${day}`;
+			},
+			async  getopenid(){
+				var that = this;
+				const loginRes   =  await  uni.login({
+				  provider: 'weixin'
+				});
+				console.log('loginRes===',loginRes)
+				const r = await that.$api.GetOpenId({code:loginRes[1].code});
+				console.log('r=====================',r)
+				if(r.data.Status == 1){
+					that.openId=r.data.Data.openId
+					
+				}else{
+					uni.showToast({
+						title:r.data.Memo,
+						icon:'none'
+					})
+				}
+				this.wepay()
+			},
+			async wepay(){
+				var that = this;
+				const r = await this.$api.WeChatPay({
+					userId:uni.getStorageSync('userInfo').id,
+					openId:that.openId,
+					orderId:that.orderId
+				})
+				console.log('r============',r,that.openId)
+				if(r.data.Status == 1){
+						
+					this.appid = r.data.Data.appid
+					this.noncestr=r.data.Data.noncestr
+					this.package=r.data.Data.package
+					this.partnerid=r.data.Data.partnerid
+					this.prepayid=r.data.Data.prepayid
+					this.sign=r.data.Data.sign
+					this.timestamp= '' +　r.data.Data.timestamp
+					this.payHandler()
+				}else{
+					uni.showToast({
+						title:r.data.Memo,
+						icon:'none'
+					})
+				}
+			},
+			// 支付按钮点击方法
+			payHandler () {
+				
+				 console.log(3333)
+				// await  this.wepay()
+				uni.req
+				var that = this;
+				console.log('=======',that.paySign)
+				// #ifdef MP-WEIXIN
+				uni.requestPayment({
+					provider: 'wxpay',
+					orderInfo: 'orderInfo', // 订单数据
+					timeStamp: '' + that.timestamp, // 时间戳从1970年1月1日至今的秒数，即当前的时间
+					nonceStr:  that.noncestr, // 随机字符串，长度为32个字符以下
+					package:   that.prepayid, // 统一下单接口返回的 prepay_id 参数值，提交格式如：prepay_id=xx
+					signType: 'MD5', //签名算法，暂支持 MD5
+					paySign: that.sign, // 签名
+					success: function (res) {
+						// 支付成功的回调中 创建绘本馆成功
+						uni.showToast({
+							title: '微信支付成功',
+							icon: 'success',
+							duration: 1500
+						});
+					},
+					fail: function (err) {
+						// 支付失败的回调中 用户未付款
+						console.log('err===========',err)
+						uni.showToast({
+							title: '支付取消',
+							duration: 1500,
+							image: '/static/png/error_icon.png'
+						});
+					}
+				});
+				// #endif
+				// #ifdef MP-ALIPAY
+				uni.requestPayment({
+					provider: 'alipay',
+					orderInfo: '', // 订单数据
+					success: function (res) {
+						if (res.resultCode == 6001) {
+							uni.showToast({
+								title: '支付取消',
+								icon: 'none',
+								duration: 1500
+							});
+						} else {
+							uni.showToast({
+								title: '支付宝支付成功',
+								icon: 'success',
+								duration: 1500
+							});
+						}
+					},
+					fail: function (err) {
+						// 支付失败的回调中 用户未付款
+						uni.showToast({
+							title: '支付取消',
+							duration: 1500,
+							icon: 'none'
+						});
+					}
+				});
+				// #endif
 			}
+		
 		},
+		
 	}
 </script>
 
