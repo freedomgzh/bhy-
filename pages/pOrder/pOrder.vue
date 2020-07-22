@@ -36,7 +36,7 @@
 				<input type="text" value="" @input="carNumber" placeholder-style="text-align:right" placeholder="请填写车牌号" />
 			</view>
 		</view>
-		<sunui-upimg @change="getImageInfo1" :upload_auto="true" ref="upimg1" :upload_count="2"></sunui-upimg>
+		<sunui-upimg @change="getImageInfo1" :upload_auto="true" ref="upimg1" :upload_count="4"></sunui-upimg>
 		<view class="title">
 			请选择监督工作项
 		</view>
@@ -268,6 +268,9 @@
 							icon: 'success',
 							duration: 1500
 						});
+						uni.switchTab({
+							url:'../index/index'
+						})
 					},
 					fail: function (err) {
 						// 支付失败的回调中 用户未付款

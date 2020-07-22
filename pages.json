@@ -33,7 +33,7 @@
 		{
 			"path": "pages/mine/psersonInfo",
 			"style": {
-				"navigationBarTitleText": "个人信息"
+				"navigationBarTitleText": "平台认证"
 			}
 		},
 		{

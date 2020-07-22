@@ -25,7 +25,7 @@
 		methods:{
 			async getMes(){
 				const data={
-					msgType:2,
+					msgType:1,
 					userId:this.$store.getters.userinfo.id
 				}
 				const r = await this.$api.getMessageList(data)

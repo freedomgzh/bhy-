@@ -32,7 +32,7 @@
 				}
 				const data = {}
 				data.userId = this.$store.getters.userinfo.id;
-				data.userType = 2
+				data.userType = 1
 				data.content = this.sug
 				const r = await this.$api.FeedBack(data)
 				console.log('r=============',r)
