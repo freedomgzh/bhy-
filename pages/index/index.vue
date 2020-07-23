@@ -2,8 +2,8 @@
 	<view class="content">
 		<view class="top">
 			<swiper class="swiper" :indicator-dots="indicatorDots" :autoplay="autoplay" :interval="interval" :duration="duration">
-				<swiper-item v-for="(s,i) in list" :key="i">
-					<image src="" mode=""></image>
+				<swiper-item v-for="(s,i) in imglist" :key="i">
+					<image :src="s.img" mode=""class="aimg" ></image>
 				</swiper-item>
 				
 			</swiper>
@@ -11,7 +11,7 @@
 		</view>
 		<view class="search flexYc">
 			<image src="../../static/搜索%20(7)@3x.png" mode="" class="spic"></image>
-			<input type="text" placeholder-style="color: #DDDDDD;" value="" placeholder="搜索厂家" class="inputs" />
+			<input @tap="toSearch" type="text" disabled = 'true' placeholder-style="color: #DDDDDD;" value="" placeholder="搜索厂家" class="inputs" />
 		</view>	
 		<view class="title flexXb">
 			<view class="o">
@@ -42,11 +42,13 @@
 		data() {
 			return {
 				
-				list: []
+				list: [],
+				imglist:[]
 			}
 		},
 		onLoad() {
-			this.getList()
+			this.getList();
+			this.getPhoto()
 		},
 		onShow() {
 			var that = this;
@@ -91,9 +93,26 @@
 					})
 				}
 			},
+			async getPhoto(){
+				const r  = await this.$api.GetPhoto()
+				if (r.data.Status == 1) {
+					this.imglist = r.data.Data.Rows
+					
+				} else {
+					uni.showToast({
+						title: r.data.Memo,
+						icon: 'none'
+					})
+				}
+			},
 			toOrder(){
 				uni.navigateTo({
 					url:'../pOrder/pOrder'
+				})
+			},
+			toSearch(){
+				uni.navigateTo({
+					url:'../list/list'
 				})
 			}
 			
@@ -168,5 +187,8 @@
 		position: absolute;
 		right: 	32upx;
 		bottom: 46upx;
+	}
+	.aimg{
+		height: 300upx;
 	}
 </style>

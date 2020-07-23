@@ -78,7 +78,17 @@
 				"navigationBarTitleText": "发布订单"
 			}
 		}
-	],
+	    ,{
+            "path" : "pages/orderList/orderList/orderList",
+            "style" : {
+				"navigationBarTitleText": "订单详情"
+			}
+        }
+        ,{
+            "path" : "pages/list/list",
+            "style" : {}
+        }
+    ],
 	"tabBar": {
 	    "color": "#cdcdcd",
 	    "selectedColor": "#187BCD",

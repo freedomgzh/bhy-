@@ -6,6 +6,37 @@
 			<text>{{datas.NickName}}</text>
 
 		</view>
+		<view class="order">
+			<view class="tips flexXb">
+				<view class="ons">
+					我的订单
+				</view>
+				<view class="tns">
+					查看全部订单 >
+				</view>
+
+			</view>
+			<view class="orderList flexXb flexYc">
+				<view class="labels flexCol  flexXa" @tap="goOrder(1)">
+					<text class="num">
+						{{datas.WeiJieCount}}
+					</text>
+					<text>未接单</text>
+				</view>
+				<view class="labels flexCol" @tap="goOrder(2)">
+					<text class="num">
+						{{datas.YiJieCount}}
+					</text>
+					<text>进行中</text>
+				</view>
+				<view class="labels flexCol" @tap="goOrder(3)">
+					<text class="num">
+						{{datas.WanChengCount}}
+					</text>
+					<text>已完成</text>
+				</view>
+			</view>
+		</view>
 		<view class="list">
 			<view class=" flexXb flexYc label" @tap="toPerson">
 				<view class="flexYc">
@@ -62,7 +93,7 @@
 				})
 				if (r.data.Status == 1) {
 					this.datas = r.data.Data
-					console.log('datas=========',this.datas)
+					console.log('datas=========', this.datas)
 				} else {
 					uni.showToast({
 						title: r.data.Memo,
@@ -70,32 +101,37 @@
 					})
 				}
 			},
-				toPerson() {
-						console.log(1111111)
-						uni.navigateTo({
-							url: './psersonInfo'
-						})
-					},
-					phone() {
-						console.log(1111111)
-						uni.navigateTo({
-							url: './phone'
-						})
-					},
-					setting() {
-						console.log(1111111)
-						uni.navigateTo({
-							url: './setting'
-						})
-					},
-					suggess() {
-						console.log(1111111)
-						uni.navigateTo({
-							url: './suggess'
-						})
-					}
+			toPerson() {
+				console.log(1111111)
+				uni.navigateTo({
+					url: './psersonInfo'
+				})
+			},
+			phone() {
+				console.log(1111111)
+				uni.navigateTo({
+					url: './phone'
+				})
+			},
+			setting() {
+				console.log(1111111)
+				uni.navigateTo({
+					url: './setting'
+				})
+			},
+			suggess() {
+				console.log(1111111)
+				uni.navigateTo({
+					url: './suggess'
+				})
+			},
+			goOrder(id){
+				uni.navigateTo({
+					url:'../orderList/orderList/orderList?type=' + id
+				})
 			}
 		}
+	}
 </script>
 
 <style>
@@ -167,5 +203,46 @@
 		width: 14upx;
 		height: 25upx;
 		margin-right: 20upx;
+	}
+
+	/* 订单 */
+	.order {
+		margin: 20upx 20upx 0 20upx;
+		background-color: #FFFFFF;
+		border-radius: 8upx;
+	}
+
+	.label {
+		text-align: center;
+	}
+
+	.tips {
+		height: 88upx;
+		line-height: 88upx;
+		border-bottom: 2upx solid#EEEEEE;
+		padding: 0 20upx;
+	}
+
+	.ons {
+		font-size: 30upx;
+	}
+
+	.tns {
+		font-size: 26upx;
+		color: #666666;
+	}
+
+	.orderList {
+		font-size: 28upx;
+		height: 141upx;
+		padding: 0 20upx;
+	}
+
+	.orderList text {
+		text-align: center;
+	}
+
+	.num {
+		font-size: 38upx;
 	}
 </style>

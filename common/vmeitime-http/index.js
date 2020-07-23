@@ -136,6 +136,24 @@ export const GetOrderCount = (data) => {
 		// handle:true
     })
 }
+
+export const GetOrderList = (data) => {
+    return http.request({
+        url:'GetOrderList',
+		method: 'POST', 
+        data,
+		// handle:true
+    })
+}
+export const GetPhoto = (data) => {
+    return http.request({
+        url:'GetPhoto',
+		method: 'POST', 
+        data,
+		// handle:true
+    })
+}
+
 // 默认全部导出  import api from '@/common/vmeitime-http/'
 export default {
 login,
@@ -151,5 +169,7 @@ GetFactoryList,
 CreateOrder,
 WeChatPay,
 GetOpenId,
-RenZheng
+RenZheng,
+GetOrderList,
+GetPhoto
 }
