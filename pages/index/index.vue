@@ -33,7 +33,7 @@
 			
 		</view>
 
-		<image src="../../static/立即%20下单@3x.png" mode="" class="btns" @tap="toOrder"></image>
+		<image src="../../static/toOrder.png" mode="" class="btns" @tap="toOrder"></image>
 	</view>
 </template>
 
@@ -190,5 +190,6 @@
 	}
 	.aimg{
 		height: 300upx;
+		width: 100%;
 	}
 </style>
