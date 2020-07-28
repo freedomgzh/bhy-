@@ -1,10 +1,14 @@
 <template>
 	<view class="content">
-		<view class="top flexYc">
-
-			<image :src="datas.HeadImg" mode="" class="headLogo"></image>
-			<text>{{datas.NickName}}</text>
-
+		<view class="top flexYc flexXb">
+			<view class="">
+				<image :src="datas.HeadImg" mode="" class="headLogo"></image>
+				<text>{{datas.NickName}}</text>
+			</view>
+			
+			<view class="set"@tap="toSet">
+				编辑个人资料
+			</view>	
 		</view>
 		<view class="order">
 			<view class="tips flexXb">
@@ -129,6 +133,11 @@
 				uni.navigateTo({
 					url:'../orderList/orderList/orderList?type=' + id
 				})
+			},
+			toSet(){
+				uni.navigateTo({
+					url:'./setInfo'
+				})
 			}
 		}
 	}
@@ -244,5 +253,16 @@
 
 	.num {
 		font-size: 38upx;
+	}
+	.set{
+		color: #FFFFFF;
+		height: 50upx;
+		width: 190upx;
+		text-align: center;
+		border: 2upx solid#FFFFFF;
+		border-radius: 10upx;
+		line-height: 50upx;
+		font-size: 26upx;
+		margin-right: 43upx;
 	}
 </style>

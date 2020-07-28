@@ -45,13 +45,13 @@
 			</view>
 			<view class="btnsBox flexXb flexYc">
 				<view class="btns flexYc flexXc" @tap="getNumber(s.id)">
-					填写铅封号
+					查看铅封号
 				</view>
 				<view class="btns flexYc flexXc" @tap="getQvideo">
-					发起铅封视频
+					查看铅封视频
 				</view>
 				<view class="btns flexYc flexXc" @tap="getCvideo">
-					发起清罐视频
+					查看清罐视频
 				</view>
 			</view>
 		
@@ -166,5 +166,17 @@
 	}
 	.label text{
 		width: 50%;
+	}
+	.btnsBox{
+		height: 100upx;
+		padding: 0 20upx;
+	}
+	.btns{
+		color: #FFFFFF;
+		background-color: #005EA1;
+		font-size: 26upx;
+		height: 60upx;
+		width: 194upx;
+		border-radius: 10upx;
 	}
 </style>

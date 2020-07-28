@@ -153,6 +153,14 @@ export const GetPhoto = (data) => {
 		// handle:true
     })
 }
+export const EditInfo = (data) => {
+    return http.request({
+        url:'EditInfo',
+		method: 'POST', 
+        data,
+		// handle:true
+    })
+}
 
 // 默认全部导出  import api from '@/common/vmeitime-http/'
 export default {
@@ -171,5 +179,6 @@ WeChatPay,
 GetOpenId,
 RenZheng,
 GetOrderList,
-GetPhoto
+GetPhoto,
+EditInfo
 }

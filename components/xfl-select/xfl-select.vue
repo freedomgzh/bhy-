@@ -2,7 +2,7 @@
 	<div class="show-box"  :class="{disabled: disabled, active: isShowList}" :style="style_Container">
 		<!-- 输入框，仅在可输入模式下使用 -->
 		<input  
-			v-if="showInput"  class="input"  placeholder-style="color: #bbb;"
+			v-if="showInput" disabled="true" class="input"  placeholder-style="color: #bbb;"
 			type="text" v-model="selectText"  :placeholder="placeholder"
 			@focus="onFocus" @blur="onBlur" @input="onInput" @confirm="$emit('confirm', $event)"
 		>

@@ -17,7 +17,7 @@
 			<view class="o">
 				合作厂家
 			</view>
-			<view class="n">
+			<view class="n" @tap="toList">
 				<text>查看更多</text>
 				<text>></text>
 			</view>
@@ -114,10 +114,16 @@
 				uni.navigateTo({
 					url:'../list/list'
 				})
-			}
+			},
+			toList(){
+				uni.navigateTo({
+					url:'../industry/industry'
+				})
+			},
 			
 		}
 	}
+
 </script>
 
 <style>

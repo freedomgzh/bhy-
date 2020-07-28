@@ -87,7 +87,19 @@
         ,{
             "path" : "pages/list/list",
             "style" : {}
-        }
+        },
+		{
+		    "path" : "pages/industry/industry",
+		    "style" : {
+				"navigationBarTitleText": "工厂"
+			}
+		},
+		{
+		    "path" : "pages/mine/setInfo",
+		    "style" : {
+				"navigationBarTitleText": "个人资料设置"
+			}
+		}
     ],
 	"tabBar": {
 	    "color": "#cdcdcd",
