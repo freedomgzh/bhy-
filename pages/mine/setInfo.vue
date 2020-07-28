@@ -10,7 +10,7 @@
 			<view class="">
 				昵称
 			</view>
-			<input type="text" :value="data.NickName" @input="listenname" />
+			<input type="text" :value="datas.NickName" @input="listenname" />
 		</view>
 		<view class="btns" @tap="sub">
 			提交
@@ -22,7 +22,7 @@
 	export default{
 		data(){
 			return{
-				data:{},
+				datas:{},
 				name:'',
 				img:''
 			}
@@ -140,6 +140,7 @@
 		},
 		onLoad(e) {
 			this.name = e.name
+			this.GetOrderCount()
 		}
 	}
 </script>

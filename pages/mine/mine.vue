@@ -1,7 +1,7 @@
 <template>
 	<view class="content">
 		<view class="top flexYc flexXb">
-			<view class="">
+			<view class="flexYc">
 				<image :src="datas.HeadImg" mode="" class="headLogo"></image>
 				<text>{{datas.NickName}}</text>
 			</view>
@@ -89,6 +89,10 @@
 			this.user = this.$store.getters.userinfo
 			this.getInfo()
 
+		},
+		onShow() {
+			this.getInfo()
+			
 		},
 		methods: {
 			async getInfo() {

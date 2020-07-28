@@ -86,7 +86,9 @@
         }
         ,{
             "path" : "pages/list/list",
-            "style" : {}
+            "style" : {
+				"navigationBarTitleText": "搜索"
+			}
         },
 		{
 		    "path" : "pages/industry/industry",
