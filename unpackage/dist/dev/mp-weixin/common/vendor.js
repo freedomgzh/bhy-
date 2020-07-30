@@ -9642,13 +9642,13 @@ if (hadRuntime) {
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.default = exports.GetOpenId = exports.WeChatPay = exports.CreateOrder = exports.WeChatPay_work = exports.GetOpenId_work = exports.AddQianfeng = exports.FeedBack = exports.getMessageList = exports.GetFactoryList = exports.GetMobileCode = exports.login = exports.picUrl = exports.test = void 0;var _interface = _interopRequireDefault(__webpack_require__(/*! ./interface */ 18));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
+Object.defineProperty(exports, "__esModule", { value: true });exports.default = exports.EditInfo = exports.GetPhoto = exports.GetOrderList = exports.GetOrderCount = exports.RenZheng = exports.GetOpenId = exports.WeChatPay = exports.CreateOrder = exports.WeChatPay_work = exports.GetOpenId_work = exports.AddQianfeng = exports.FeedBack = exports.getMessageList = exports.GetFactoryList = exports.GetMobileCode = exports.login = exports.picUrl = exports.test = void 0;var _interface = _interopRequireDefault(__webpack_require__(/*! ./interface */ 18));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
 
 /**
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      * 将业务所有接口统一起来便于维护
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      * 如果项目很大可以将 url 独立成文件，接口分成不同的模块
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      * 
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      */
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              * 将业务所有接口统一起来便于维护
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              * 如果项目很大可以将 url 独立成文件，接口分成不同的模块
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              * 
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              */
 
 // 单独导出(测试接口) import {test} from '@/common/vmeitime-http/'
 var test = function test(data) {
@@ -9763,23 +9763,68 @@ var GetOpenId = function GetOpenId(data) {
     data: data
     // handle:true
   });
+};exports.GetOpenId = GetOpenId;
+var RenZheng = function RenZheng(data) {
+  return _interface.default.request({
+    url: 'RenZheng',
+    method: 'POST',
+    data: data
+    // handle:true
+  });
+};exports.RenZheng = RenZheng;
+var GetOrderCount = function GetOrderCount(data) {
+  return _interface.default.request({
+    url: 'GetOrderCount',
+    method: 'POST',
+    data: data
+    // handle:true
+  });
+};exports.GetOrderCount = GetOrderCount;
+
+var GetOrderList = function GetOrderList(data) {
+  return _interface.default.request({
+    url: 'GetOrderList',
+    method: 'POST',
+    data: data
+    // handle:true
+  });
+};exports.GetOrderList = GetOrderList;
+var GetPhoto = function GetPhoto(data) {
+  return _interface.default.request({
+    url: 'GetPhoto',
+    method: 'POST',
+    data: data
+    // handle:true
+  });
+};exports.GetPhoto = GetPhoto;
+var EditInfo = function EditInfo(data) {
+  return _interface.default.request({
+    url: 'EditInfo',
+    method: 'POST',
+    data: data
+    // handle:true
+  });
 };
 
 // 默认全部导出  import api from '@/common/vmeitime-http/'
-exports.GetOpenId = GetOpenId;var _default = {
+exports.EditInfo = EditInfo;var _default = {
   login: login,
   // getOrderList,
   getMessageList: getMessageList,
   picUrl: picUrl,
   FeedBack: FeedBack,
   AddQianfeng: AddQianfeng,
-
+  GetOrderCount: GetOrderCount,
   WeChatPay_work: WeChatPay_work,
   GetMobileCode: GetMobileCode,
   GetFactoryList: GetFactoryList,
   CreateOrder: CreateOrder,
   WeChatPay: WeChatPay,
-  GetOpenId: GetOpenId };exports.default = _default;
+  GetOpenId: GetOpenId,
+  RenZheng: RenZheng,
+  GetOrderList: GetOrderList,
+  GetPhoto: GetPhoto,
+  EditInfo: EditInfo };exports.default = _default;
 
 /***/ }),
 /* 18 */

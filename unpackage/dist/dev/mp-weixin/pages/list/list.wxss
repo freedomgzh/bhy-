@@ -1,0 +1,33 @@
+
+.search{
+	margin: 25rpx 20rpx 30rpx 20rpx;
+	height: 80rpx;
+	border-radius: 40rpx;
+	box-shadow: 5rpx 5rpx 15rpx  rgba(24,123,205,0.1);
+	font-size: 28rpx;
+}
+.spic{
+	width: 36rpx;
+	height: 36rpx;
+	margin-left: 60rpx;
+	margin-right: 10rpx;
+}
+.list{
+	margin:0 18rpx;
+	border-bottom: 2rpx solid#EEEEEE;
+	height: 140rpx;
+}
+.logoImg{
+	width:100rpx;
+	height: 100rpx;
+	
+	margin-right: 20rpx;
+}
+.name{
+	
+	font-weight: 400;
+}
+.address{
+	font-size: 26rpx;
+}
+

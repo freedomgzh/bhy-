@@ -11,7 +11,12 @@
     "pages/mine/phone",
     "pages/meeting/meeting",
     "pages/room/room",
-    "pages/pay/pay"
+    "pages/pay/pay",
+    "pages/pOrder/pOrder",
+    "pages/orderList/orderList/orderList",
+    "pages/list/list",
+    "pages/industry/industry",
+    "pages/mine/setInfo"
   ],
   "subPackages": [],
   "window": {
@@ -46,5 +51,6 @@
       }
     ]
   },
-  "usingComponents": {}
+  "usingComponents": {},
+  "sitemapLocation": "sitemap27.json"
 }

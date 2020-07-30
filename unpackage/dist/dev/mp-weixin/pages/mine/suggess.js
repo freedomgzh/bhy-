@@ -164,7 +164,7 @@ var _default =
                 }
                 data = {};
                 data.userId = _this.$store.getters.userinfo.id;
-                data.userType = 2;
+                data.userType = 1;
                 data.content = _this.sug;_context.next = 7;return (
                   _this.$api.FeedBack(data));case 7:r = _context.sent;
                 console.log('r=============', r);

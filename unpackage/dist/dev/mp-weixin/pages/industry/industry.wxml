@@ -1,0 +1,1 @@
+<view class="content"><view class="listBox"><block wx:for="{{list}}" wx:for-item="s" wx:for-index="i" wx:key="i"><view class="list flexYc"><image class="logoImg" src="{{s.img}}" mode></image><view class="flexCol"><text class="name">{{s.name}}</text><text class="address">{{"地址："+s.address}}</text></view></view></block></view></view>

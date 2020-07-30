@@ -1,4 +1,7 @@
 {
-  "navigationBarTitleText": "个人信息",
-  "usingComponents": {}
+  "navigationBarTitleText": "平台认证",
+  "usingComponents": {
+    "sunui-upimg": "/components/sunui-upimg/sunui-upimg",
+    "sun-ui-upimg": "/components/sunui-upimg/sunui-upimg"
+  }
 }

@@ -1,0 +1,35 @@
+
+.f{
+	margin: 0 20rpx;
+	height: 147rpx;
+	border-bottom:2rpx solid#DCDCDC;
+	font-size: 28rpx;
+}
+.f image{
+	width: 106rpx;
+	height: 106rpx;
+	margin-right: 10rpx;
+}
+.t{
+	margin: 0 20rpx;
+	height: 88rpx;
+	
+	font-size: 28rpx;
+}
+.t input{
+	text-align: right;
+}
+.btns{
+	position: absolute;
+	bottom: 60rpx;
+	left: 20rpx;
+	height: 84rpx;
+	width: 710rpx;
+	border-radius: 10rpx;
+	color: #FFFFFF;
+	text-align: center;
+	line-height: 84rpx;
+	background-color: #005EA1;
+	font-size: 32rpx;
+}
+

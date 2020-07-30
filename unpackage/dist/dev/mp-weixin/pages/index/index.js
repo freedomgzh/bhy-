@@ -174,11 +174,13 @@ var _default =
   data: function data() {
     return {
 
-      list: [] };
+      list: [],
+      imglist: [] };
 
   },
   onLoad: function onLoad() {
     this.getList();
+    this.getPhoto();
   },
   onShow: function onShow() {
     var that = this;
@@ -222,6 +224,33 @@ var _default =
                     icon: 'none' });
 
                 }case 5:case "end":return _context.stop();}}}, _callee);}))();
+    },
+    getPhoto: function getPhoto() {var _this2 = this;return _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee2() {var r;return _regenerator.default.wrap(function _callee2$(_context2) {while (1) {switch (_context2.prev = _context2.next) {case 0:_context2.next = 2;return (
+                  _this2.$api.GetPhoto());case 2:r = _context2.sent;
+                if (r.data.Status == 1) {
+                  _this2.imglist = r.data.Data.Rows;
+
+                } else {
+                  uni.showToast({
+                    title: r.data.Memo,
+                    icon: 'none' });
+
+                }case 4:case "end":return _context2.stop();}}}, _callee2);}))();
+    },
+    toOrder: function toOrder() {
+      uni.navigateTo({
+        url: '../pOrder/pOrder' });
+
+    },
+    toSearch: function toSearch() {
+      uni.navigateTo({
+        url: '../list/list' });
+
+    },
+    toList: function toList() {
+      uni.navigateTo({
+        url: '../industry/industry' });
+
     } } };exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 

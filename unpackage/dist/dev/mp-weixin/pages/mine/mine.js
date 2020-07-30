@@ -130,7 +130,42 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0; //
+/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _regenerator = _interopRequireDefault(__webpack_require__(/*! ./node_modules/@vue/babel-preset-app/node_modules/@babel/runtime/regenerator */ 14));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {try {var info = gen[key](arg);var value = info.value;} catch (error) {reject(error);return;}if (info.done) {resolve(value);} else {Promise.resolve(value).then(_next, _throw);}}function _asyncToGenerator(fn) {return function () {var self = this,args = arguments;return new Promise(function (resolve, reject) {var gen = fn.apply(self, args);function _next(value) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value);}function _throw(err) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err);}_next(undefined);});};} //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -178,14 +213,34 @@ var _default =
 {
   data: function data() {
     return {
-      user: {} };
+      datas: {} };
 
 
   },
   onLoad: function onLoad() {
     this.user = this.$store.getters.userinfo;
+    this.getInfo();
+
+  },
+  onShow: function onShow() {
+    this.getInfo();
+
   },
   methods: {
+    getInfo: function getInfo() {var _this = this;return _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee() {var r;return _regenerator.default.wrap(function _callee$(_context) {while (1) {switch (_context.prev = _context.next) {case 0:_context.next = 2;return (
+                  _this.$api.GetOrderCount({
+                    userId: _this.$store.getters.userinfo.id }));case 2:r = _context.sent;
+
+                if (r.data.Status == 1) {
+                  _this.datas = r.data.Data;
+                  console.log('datas=========', _this.datas);
+                } else {
+                  uni.showToast({
+                    title: r.data.Memo,
+                    icon: 'none' });
+
+                }case 4:case "end":return _context.stop();}}}, _callee);}))();
+    },
     toPerson: function toPerson() {
       console.log(1111111);
       uni.navigateTo({
@@ -208,6 +263,16 @@ var _default =
       console.log(1111111);
       uni.navigateTo({
         url: './suggess' });
+
+    },
+    goOrder: function goOrder(id) {
+      uni.navigateTo({
+        url: '../orderList/orderList/orderList?type=' + id });
+
+    },
+    toSet: function toSet() {
+      uni.navigateTo({
+        url: './setInfo' });
 
     } } };exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))

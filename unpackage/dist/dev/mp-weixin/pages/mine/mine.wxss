@@ -1,61 +1,106 @@
 
-page{
+page {
 	height: 100%;
 }
-.content{
+.content {
 	height: 100%;
 	background-color: #F6F6F6;
 }
-.top{
-	height: 210rpx;	
+.top {
+	height: 210rpx;
 	background-color: #187BCD;
 	color: #FFFFFF;
 	font-size: 34rpx;
 }
-.headLogo{
+.headLogo {
 	border-radius: 50%;
 	height: 110rpx;
 	width: 110rpx;
 	margin-right: 20rpx;
 	margin-left: 30rpx;
 }
-.list{
+.list {
 	font-size: 28rpx;
 	background-color: #FFFFFF;
 	border-radius: 8rpx;
 	margin: 20rpx;
 }
-.label{
+.label {
 	height: 105rpx;
 	border-bottom: 2rpx solid#EEEEEE;
 }
-.personimg{
+.personimg {
 	height: 46rpx;
 	width: 40rpx;
 	margin-right: 21rpx;
 	margin-left: 30rpx;
 }
-.kefuimg{
+.kefuimg {
 	height: 41rpx;
 	width: 40rpx;
 	margin-right: 21rpx;
 	margin-left: 30rpx;
 }
-.suggessimg{
+.suggessimg {
 	height: 42rpx;
 	width: 40rpx;
 	margin-right: 21rpx;
 	margin-left: 30rpx;
 }
-.settingimg{
+.settingimg {
 	height: 42rpx;
 	width: 41rpx;
 	margin-right: 21rpx;
 	margin-left: 30rpx;
 }
-.arrow{
+.arrow {
 	width: 14rpx;
 	height: 25rpx;
 	margin-right: 20rpx;
+}
+
+/* 订单 */
+.order {
+	margin: 20rpx 20rpx 0 20rpx;
+	background-color: #FFFFFF;
+	border-radius: 8rpx;
+}
+.label {
+	text-align: center;
+}
+.tips {
+	height: 88rpx;
+	line-height: 88rpx;
+	border-bottom: 2rpx solid#EEEEEE;
+	padding: 0 20rpx;
+}
+.ons {
+	font-size: 30rpx;
+}
+.tns {
+	font-size: 26rpx;
+	color: #666666;
+}
+.orderList {
+	font-size: 28rpx;
+	height: 141rpx;
+	padding: 0 20rpx;
+}
+.orderList text {
+	text-align: center;
+}
+.num {
+	font-size: 38rpx;
+}
+.set{
+	color: #FFFFFF;
+	height: 50rpx;
+	width: 190rpx;
+	text-align: center;
+	border: 2rpx solid#FFFFFF;
+	border-radius: 10rpx;
+	line-height: 50rpx;
+	font-size: 26rpx;
+	margin-right: 43rpx;
 }
 
