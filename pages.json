@@ -54,18 +54,8 @@
 				"navigationBarTitleText": "客服电话"
 			}
 		},
-		{
-			"path": "pages/meeting/meeting",
-			"style": {
-				"navigationBarTitleText": "视频通话"
-			}
-		},
-		{
-			"path": "pages/room/room",
-			"style": {
-				"navigationStyle": "custom"
-			}
-		},
+		
+	
 		{
 			"path": "pages/pay/pay",
 			"style": {
@@ -74,6 +64,12 @@
 		},
 		{
 			"path": "pages/pOrder/pOrder",
+			"style": {
+				"navigationBarTitleText": "发布订单"
+			}
+		},
+		{
+			"path": "pages/pOrder/pOrderi",
 			"style": {
 				"navigationBarTitleText": "发布订单"
 			}
@@ -100,6 +96,21 @@
 		    "path" : "pages/mine/setInfo",
 		    "style" : {
 				"navigationBarTitleText": "个人资料设置"
+			}
+		},{
+		    "path" : "pages/mine/all",
+		    "style" : {
+				"navigationBarTitleText": "全部订单"
+			}
+		},{
+		    "path" : "pages/mine/showInfo",
+		    "style" : {
+				"navigationBarTitleText": "认证信息"
+			}
+		},{
+		    "path" : "pages/numberDetail/numberDetail/numberDetail",
+		    "style" : {
+				"navigationBarTitleText": "铅封号"
 			}
 		}
     ],

@@ -6,7 +6,7 @@
 			</xfl-select>
 		</view>
 		<view class="listBox">
-			<view class="list flexYc flexXb">
+			<view class="lists flexYc flexXb">
 				<text>请选择到厂时间</text>
 				
 				<view class="uni-list-cell-db flex">
@@ -19,19 +19,19 @@
 				</view>
 
 			</view>
-			<view class="list flexYc flexXb">
+			<view class="lists flexYc flexXb">
 				<text>运输物</text>
 				<input type="text" @input="wupin" value="" placeholder-style="text-align:right" placeholder="请填写运输物" />
 			</view>
-			<view class="list flexYc flexXb">
+			<view class="lists flexYc flexXb">
 				<text>驾驶员</text>
 				<input type="text" value="" @input="driver" placeholder-style="text-align:right" placeholder="请填写驾驶员姓名" />
 			</view>
-			<view class="list flexYc flexXb">
+			<view class="lists flexYc flexXb">
 				<text>随车电话</text>
-				<input type="text" value="" @input="phone" placeholder-style="text-align:right" placeholder="请填写随车电话" />
+				<input type="number" value="" @input="phone" placeholder-style="text-align:right" placeholder="请填写随车电话" />
 			</view>
-			<view class="list flexYc flexXb">
+			<view class="lists flexYc flexXb">
 				<text>车牌号</text>
 				<input type="text" value="" @input="carNumber" placeholder-style="text-align:right" placeholder="请填写车牌号" />
 			</view>
@@ -42,11 +42,11 @@
 		</view>
 		<view class="bg">
 			<view class="line flexXb flexYc">
-				<text>清罐：</text>
+				<text>清罐进厂：</text>
 				<jiuaiCheckbox @change='changeBox1' value="自定义的一个value" :checked="true" :checkBoxSize='40' :borderRadius='30'></jiuaiCheckbox>
 			</view>
 			<view class="line flexXb flexYc">
-				<text>铅封：</text>
+				<text>出厂施封：</text>
 				<jiuaiCheckbox @change='changeBox2' value="自定义的一个value" :checked="true" :checkBoxSize='40' :borderRadius='30'></jiuaiCheckbox>
 			</view>
 		</view>
@@ -83,13 +83,14 @@
 				factoryId: '',
 				date: currentDate,
 				carImgs:[],
-				checkOne:false,
-				checkTwo:false,
+				checkOne:true,
+				checkTwo:true,
 				workContent:0,
 				userId:uni.getStorageSync('userInfo').id
 			}
 		},
 		onLoad() {
+			
 			this.getList()
 		},
 		methods: {
@@ -151,8 +152,37 @@
 			bindDateChange: function(e) {
 				this.date = e.target.value
 			},
+			check(){
+				var that = this;
+				
+				function st() {
+					
+					return that.$store.dispatch('isLogin')
+				}
+				console.log(that.$store)
+				st().then(function(data) {
+					console.log(1111)
+					if (data) {
+					
+						console.log("镇的")
+						that.hasLoginData = 1
+						console.log(that.$store, that.hasLoginData)
+						
+					} else {
+				
+						console.log(data + "假的")
+						uni.navigateTo({
+							url: '../login/login'
+						})
+					}
+				
+				});
+			},
+			
+			
 			// tijiaofabu
 			async freeTell(){
+				this.check()
 				if(this.checkOne && this.checkTwo){
 					this.workContent = 2
 				}else if(!this.checkOne && this.checkTwo){
@@ -345,17 +375,17 @@
 		background-color: #FFFFFF;
 	}
 
-	.list {
+	.lists {
 		height: 110upx;
 		margin: 0 20upx;
 		border-bottom: 2upxsolid#EEEEEE;
 	}
 
-	.list text {
+	.lists text {
 		font-size: 30upx;
 	}
 
-	.list input {
+	.lists input {
 		font-size: 28upx;
 		color: #CACACA;
 	}

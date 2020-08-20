@@ -10,7 +10,7 @@
 
 		</view>
 		<view class="search flexYc">
-			<image src="../../static/搜索%20(7)@3x.png" mode="" class="spic"></image>
+			<image src="../../static/serach.png" mode="" class="spic"></image>
 			<input @tap="toSearch" type="text" disabled = 'true' placeholder-style="color: #DDDDDD;" value="" placeholder="搜索厂家" class="inputs" />
 		</view>	
 		<view class="title flexXb">
@@ -23,7 +23,7 @@
 			</view>
 		</view>
 		<view class="listBox">
-			<view class="list flexYc" v-for="(s,i) in list" :key="i">
+			<view class="list flexYc" @tap="toOrderi(s.id)" v-for="(s,i) in list" :key="i">
 				<image :src="s.img" mode="" class="logoImg"></image>
 				<view class="flexCol">
 					<text class="name">{{s.name}}</text>
@@ -51,35 +51,41 @@
 			this.getPhoto()
 		},
 		onShow() {
-			var that = this;
-
-			function st() {
-
-				return that.$store.dispatch('isLogin')
-			}
-			console.log(that.$store)
-			st().then(function(data) {
-				console.log(1111)
-				if (data) {
-
-					console.log("镇的")
-					that.hasLoginData = 1
-					console.log(that.$store, that.hasLoginData)
-
-				} else {
-
-					console.log(data + "假的")
-					uni.navigateTo({
-						url: '../login/login'
-					})
-				}
-
-			});
+			
 		},
 		watch: {
 			
 		},
 		methods: {
+			check(){
+				var that = this;
+				
+				function st() {
+					
+					return that.$store.dispatch('isLogin')
+				}
+				console.log(that.$store)
+				st().then(function(data) {
+					console.log(1111)
+					if (data) {
+					
+						console.log("镇的")
+						that.hasLoginData = 1
+						console.log(that.$store, that.hasLoginData)
+						
+					} else {
+				
+						console.log(data + "假的")
+						uni.navigateTo({
+							url: '../login/login'
+						})
+					}
+				
+				});
+			},
+			
+			
+			
 			async getList(v) {
 				const r = await this.$api.GetFactoryList()
 				console.log('r=========', r)
@@ -105,9 +111,14 @@
 					})
 				}
 			},
-			toOrder(){
+			toOrderi(id){
 				uni.navigateTo({
-					url:'../pOrder/pOrder'
+					url:'../pOrder/pOrderi?id=' + id
+				})
+			},
+			toOrder(id){
+				uni.navigateTo({
+					url:'../pOrder/pOrder?id=' + id
 				})
 			},
 			toSearch(){

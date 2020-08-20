@@ -158,7 +158,7 @@ var _default =
     getMes: function getMes() {var _this = this;return _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee() {var data, r;return _regenerator.default.wrap(function _callee$(_context) {while (1) {switch (_context.prev = _context.next) {case 0:
                 data = {
                   msgType: 1,
-                  userId: _this.$store.getters.userinfo.id };_context.next = 3;return (
+                  userId: uni.getStorageSync('userInfo').id };_context.next = 3;return (
 
                   _this.$api.getMessageList(data));case 3:r = _context.sent;
 

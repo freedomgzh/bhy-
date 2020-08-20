@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "认证信息",
+  "usingComponents": {
+    "sun-ui-upimg": "/components/sunui-upimg/sunui-upimg"
+  }
+}

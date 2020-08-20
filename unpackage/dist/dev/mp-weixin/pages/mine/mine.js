@@ -223,13 +223,41 @@ var _default =
 
   },
   onShow: function onShow() {
+    this.check();
     this.getInfo();
 
   },
   methods: {
+    check: function check() {
+      var that = this;
+
+      function st() {
+
+        return that.$store.dispatch('isLogin');
+      }
+      console.log(that.$store);
+      st().then(function (data) {
+        console.log(1111);
+        if (data) {
+
+          console.log("镇的");
+          that.hasLoginData = 1;
+          console.log(that.$store, that.hasLoginData);
+
+        } else {
+
+          console.log(data + "假的");
+          uni.navigateTo({
+            url: '../login/login' });
+
+        }
+
+      });
+    },
+
     getInfo: function getInfo() {var _this = this;return _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee() {var r;return _regenerator.default.wrap(function _callee$(_context) {while (1) {switch (_context.prev = _context.next) {case 0:_context.next = 2;return (
                   _this.$api.GetOrderCount({
-                    userId: _this.$store.getters.userinfo.id }));case 2:r = _context.sent;
+                    userId: uni.getStorageSync('userInfo').id }));case 2:r = _context.sent;
 
                 if (r.data.Status == 1) {
                   _this.datas = r.data.Data;
@@ -241,10 +269,28 @@ var _default =
 
                 }case 4:case "end":return _context.stop();}}}, _callee);}))();
     },
-    toPerson: function toPerson() {
-      console.log(1111111);
-      uni.navigateTo({
-        url: './psersonInfo' });
+    toPerson: function toPerson() {var _this2 = this;return _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee2() {var r;return _regenerator.default.wrap(function _callee2$(_context2) {while (1) {switch (_context2.prev = _context2.next) {case 0:
+                console.log(1111111);_context2.next = 3;return (
+                  _this2.$api.GetRenZhengInfo({
+                    userId: uni.getStorageSync('userInfo').id }));case 3:r = _context2.sent;
+
+                if (r.data.Status == 1) {
+                  uni.navigateTo({
+                    url: './showInfo?data=' + JSON.stringify(r.data.Data) });
+
+
+
+
+                } else {
+                  uni.showToast({
+                    title: r.data.Memo,
+                    icon: 'none' });
+
+                  uni.navigateTo({
+                    url: './psersonInfo' });
+
+                }
+                console.log('r====', r);case 6:case "end":return _context2.stop();}}}, _callee2);}))();
 
     },
     phone: function phone() {
@@ -263,6 +309,12 @@ var _default =
       console.log(1111111);
       uni.navigateTo({
         url: './suggess' });
+
+    },
+    toAll: function toAll() {
+      console.log(1111111);
+      uni.navigateTo({
+        url: './all' });
 
     },
     goOrder: function goOrder(id) {

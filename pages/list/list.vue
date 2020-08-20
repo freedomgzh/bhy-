@@ -1,11 +1,11 @@
 <template>
 	<view class="content">
 		<view class="search flexYc">
-			<image src="../../static/搜索%20(7)@3x.png" mode="" class="spic"></image>
+			<image src="../../static/serach.png" mode="" class="spic"></image>
 			<input  type="text" @input="search" placeholder-style="color: #DDDDDD;" value="" placeholder="搜索厂家" class="inputs" />
 		</view>	
 		<view class="listBox">
-			<view class="list flexYc" v-for="(s,i) in list" :key="i">
+			<view class="list flexYc"  @tap="toOrder(s.id)" v-for="(s,i) in list" :key="i">
 				<image :src="s.img" mode="" class="logoImg"></image>
 				<view class="flexCol">
 					<text class="name">{{s.name}}</text>
@@ -49,7 +49,12 @@
 						icon: 'none'
 					})
 				}
-			}
+			},
+			toOrder(id){
+				uni.navigateTo({
+					url:'../pOrder/pOrderi?id=' + id
+				})
+			},
 		}
 	}
 </script>

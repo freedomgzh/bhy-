@@ -41,7 +41,7 @@
 		},
 		onLoad() {
 			console.log(1111111111)
-			this.user = this.$store.getters.userinfo
+			this.user = uni.getStorageSync('userInfo')
 		},
 		methods:{
 			wupin(e) {
@@ -60,11 +60,14 @@
 			async sub(){
 				
 				const data = {}
-				data.userId = this.$store.getters.userinfo.id;
+				data.userId = uni.getStorageSync('userInfo').id;
 				data.manager = this.driverName
 				data.mobile = this.mobile
 				data.siteName = this.goodsName
-				data.img = this.img.splice()
+				console.log('img========',this.img)
+				data.img = JSON.stringify(this.img) 
+				
+				
 				const r = await this.$api.RenZheng(data)
 				console.log('r=============',r)
 				if(r.data.Status == 1){

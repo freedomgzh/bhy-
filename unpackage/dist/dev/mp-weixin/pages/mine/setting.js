@@ -146,17 +146,20 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 var _default =
 {
   data: function data() {
-    return {};
-
+    return {
+      user: {} };
 
 
   },
   onLoad: function onLoad() {
     console.log(1111111111);
-    this.user = this.$store.getters.userinfo;
+    this.user = uni.getStorageSync('userInfo').id;
   },
   methods: {
     sub: function sub() {

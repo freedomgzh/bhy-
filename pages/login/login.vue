@@ -1,5 +1,6 @@
 <template>
 	<view class="login">
+		<image class="close" @tap="toIndex" src="../../static/close.png" mode=""></image>
 		<view class="title">
 			欢迎登陆
 		</view>
@@ -103,6 +104,11 @@
 					})
 				}
 			}
+		},
+		toIndex(){
+			uni.switchTab({
+				url:'../index/index'
+			})
 		}
 	}
 </script>
@@ -138,5 +144,12 @@
 		color: #FFFFFF;
 		font-size: 30upx;
 		margin-top: 80upx;
+	}
+	.close{
+		width: 60upx;
+		height: 60upx;
+		position: absolute;
+		top: 75upx;
+		left: 20upx;
 	}
 </style>

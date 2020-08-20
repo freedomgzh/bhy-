@@ -30,7 +30,7 @@
 		methods:{
 			async GetOrderCount(){
 				const r = await this.$api.GetOrderCount({
-					userId: this.$store.getters.userinfo.id
+					userId: uni.getStorageSync('userInfo').id
 				})
 				if (r.data.Status == 1) {
 					this.datas = r.data.Data
@@ -47,7 +47,7 @@
 			},
 			async sub(){
 				const r = await this.$api.EditInfo({
-					userId: this.$store.getters.userinfo.id,
+					userId: uni.getStorageSync('userInfo').id,
 					nikeName:this.name,
 					avatarImg:this.img
 				})

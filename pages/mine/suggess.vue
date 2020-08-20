@@ -31,7 +31,7 @@
 					})
 				}
 				const data = {}
-				data.userId = this.$store.getters.userinfo.id;
+				data.userId = uni.getStorageSync('userInfo').id;
 				data.userType = 1
 				data.content = this.sug
 				const r = await this.$api.FeedBack(data)

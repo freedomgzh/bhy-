@@ -15,7 +15,7 @@
 				<view class="ons">
 					我的订单
 				</view>
-				<view class="tns">
+				<view class="tns" @tap="toAll">
 					查看全部订单 >
 				</view>
 
@@ -91,13 +91,41 @@
 
 		},
 		onShow() {
+			this.check()
 			this.getInfo()
 			
 		},
 		methods: {
+			check(){
+				var that = this;
+				
+				function st() {
+					
+					return that.$store.dispatch('isLogin')
+				}
+				console.log(that.$store)
+				st().then(function(data) {
+					console.log(1111)
+					if (data) {
+					
+						console.log("镇的")
+						that.hasLoginData = 1
+						console.log(that.$store, that.hasLoginData)
+						
+					} else {
+				
+						console.log(data + "假的")
+						uni.navigateTo({
+							url: '../login/login'
+						})
+					}
+				
+				});
+			},
+			
 			async getInfo() {
 				const r = await this.$api.GetOrderCount({
-					userId: this.$store.getters.userinfo.id
+					userId: uni.getStorageSync('userInfo').id
 				})
 				if (r.data.Status == 1) {
 					this.datas = r.data.Data
@@ -109,11 +137,29 @@
 					})
 				}
 			},
-			toPerson() {
+			async toPerson() {
 				console.log(1111111)
-				uni.navigateTo({
-					url: './psersonInfo'
+				const r = await this.$api.GetRenZhengInfo({
+					userId:uni.getStorageSync('userInfo').id
 				})
+				if (r.data.Status == 1) {
+					uni.navigateTo({
+						url: './showInfo?data=' + JSON.stringify(r.data.Data)
+					})
+						
+					
+					
+				} else {
+					uni.showToast({
+						title: r.data.Memo,
+						icon: 'none'
+					})
+					uni.navigateTo({
+						url: './psersonInfo'
+					})
+				}
+				console.log('r====',r)
+				
 			},
 			phone() {
 				console.log(1111111)
@@ -131,6 +177,12 @@
 				console.log(1111111)
 				uni.navigateTo({
 					url: './suggess'
+				})
+			},
+			toAll() {
+				console.log(1111111)
+				uni.navigateTo({
+					url: './all'
 				})
 			},
 			goOrder(id){

@@ -183,35 +183,41 @@ var _default =
     this.getPhoto();
   },
   onShow: function onShow() {
-    var that = this;
 
-    function st() {
-
-      return that.$store.dispatch('isLogin');
-    }
-    console.log(that.$store);
-    st().then(function (data) {
-      console.log(1111);
-      if (data) {
-
-        console.log("镇的");
-        that.hasLoginData = 1;
-        console.log(that.$store, that.hasLoginData);
-
-      } else {
-
-        console.log(data + "假的");
-        uni.navigateTo({
-          url: '../login/login' });
-
-      }
-
-    });
   },
   watch: {},
 
 
   methods: {
+    check: function check() {
+      var that = this;
+
+      function st() {
+
+        return that.$store.dispatch('isLogin');
+      }
+      console.log(that.$store);
+      st().then(function (data) {
+        console.log(1111);
+        if (data) {
+
+          console.log("镇的");
+          that.hasLoginData = 1;
+          console.log(that.$store, that.hasLoginData);
+
+        } else {
+
+          console.log(data + "假的");
+          uni.navigateTo({
+            url: '../login/login' });
+
+        }
+
+      });
+    },
+
+
+
     getList: function getList(v) {var _this = this;return _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee() {var r;return _regenerator.default.wrap(function _callee$(_context) {while (1) {switch (_context.prev = _context.next) {case 0:_context.next = 2;return (
                   _this.$api.GetFactoryList());case 2:r = _context.sent;
                 console.log('r=========', r);
@@ -237,9 +243,14 @@ var _default =
 
                 }case 4:case "end":return _context2.stop();}}}, _callee2);}))();
     },
-    toOrder: function toOrder() {
+    toOrderi: function toOrderi(id) {
       uni.navigateTo({
-        url: '../pOrder/pOrder' });
+        url: '../pOrder/pOrderi?id=' + id });
+
+    },
+    toOrder: function toOrder(id) {
+      uni.navigateTo({
+        url: '../pOrder/pOrder?id=' + id });
 
     },
     toSearch: function toSearch() {

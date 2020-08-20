@@ -1,0 +1,9 @@
+{
+  "navigationBarTitleText": "发布订单",
+  "usingComponents": {
+    "sunui-upimg": "/components/sunui-upimg/sunui-upimg",
+    "xfl-select": "/components/xfl-select/xfl-select",
+    "sun-ui-upimg": "/components/sunui-upimg/sunui-upimg",
+    "jiuai-checkbox": "/components/jiuai-checkbox/jiuai-checkbox"
+  }
+}

@@ -11,7 +11,7 @@
 			</view>
 			
 		</view>
-	</view>
+	</view>	
 </template>
 
 <script>
@@ -26,7 +26,7 @@
 			async getMes(){
 				const data={
 					msgType:1,
-					userId:this.$store.getters.userinfo.id
+					userId:uni.getStorageSync('userInfo').id
 				}
 				const r = await this.$api.getMessageList(data)
 				

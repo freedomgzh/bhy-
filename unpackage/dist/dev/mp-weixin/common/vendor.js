@@ -9642,13 +9642,13 @@ if (hadRuntime) {
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.default = exports.EditInfo = exports.GetPhoto = exports.GetOrderList = exports.GetOrderCount = exports.RenZheng = exports.GetOpenId = exports.WeChatPay = exports.CreateOrder = exports.WeChatPay_work = exports.GetOpenId_work = exports.AddQianfeng = exports.FeedBack = exports.getMessageList = exports.GetFactoryList = exports.GetMobileCode = exports.login = exports.picUrl = exports.test = void 0;var _interface = _interopRequireDefault(__webpack_require__(/*! ./interface */ 18));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
+Object.defineProperty(exports, "__esModule", { value: true });exports.default = exports.AddQianShou = exports.GetVideoUrl = exports.GetQianFengList = exports.close = exports.GetRenZhengInfo = exports.EditInfo = exports.GetPhoto = exports.GetOrderList = exports.GetOrderCount = exports.RenZheng = exports.GetOpenId = exports.WeChatPay = exports.CreateOrder = exports.WeChatPay_work = exports.GetOpenId_work = exports.AddQianfeng = exports.FeedBack = exports.getMessageList = exports.GetFactoryList = exports.GetMobileCode = exports.login = exports.picUrl = exports.test = void 0;var _interface = _interopRequireDefault(__webpack_require__(/*! ./interface */ 18));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
 
 /**
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              * 将业务所有接口统一起来便于维护
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              * 如果项目很大可以将 url 独立成文件，接口分成不同的模块
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              * 
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              */
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              * 将业务所有接口统一起来便于维护
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              * 如果项目很大可以将 url 独立成文件，接口分成不同的模块
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              * 
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              */
 
 // 单独导出(测试接口) import {test} from '@/common/vmeitime-http/'
 var test = function test(data) {
@@ -9804,10 +9804,49 @@ var EditInfo = function EditInfo(data) {
     data: data
     // handle:true
   });
+};exports.EditInfo = EditInfo;
+var GetRenZhengInfo = function GetRenZhengInfo(data) {
+  return _interface.default.request({
+    url: 'GetRenZhengInfo',
+    method: 'POST',
+    data: data
+    // handle:true
+  });
+};exports.GetRenZhengInfo = GetRenZhengInfo;
+var close = function close(data) {
+  return _interface.default.request({
+    url: 'close',
+    method: 'POST',
+    data: data
+    // handle:true
+  });
+};exports.close = close;
+var GetQianFengList = function GetQianFengList(data) {
+  return _interface.default.request({
+    url: 'GetQianFengList',
+    method: 'POST',
+    data: data
+    // handle:true
+  });
+};exports.GetQianFengList = GetQianFengList;
+var GetVideoUrl = function GetVideoUrl(data) {
+  return _interface.default.request({
+    url: 'GetVideoUrl',
+    method: 'POST',
+    data: data
+    // handle:true
+  });
+};exports.GetVideoUrl = GetVideoUrl;
+var AddQianShou = function AddQianShou(data) {
+  return _interface.default.request({
+    url: 'AddQianShou',
+    method: 'POST',
+    data: data
+    // handle:true
+  });
 };
-
 // 默认全部导出  import api from '@/common/vmeitime-http/'
-exports.EditInfo = EditInfo;var _default = {
+exports.AddQianShou = AddQianShou;var _default = {
   login: login,
   // getOrderList,
   getMessageList: getMessageList,
@@ -9824,7 +9863,12 @@ exports.EditInfo = EditInfo;var _default = {
   RenZheng: RenZheng,
   GetOrderList: GetOrderList,
   GetPhoto: GetPhoto,
-  EditInfo: EditInfo };exports.default = _default;
+  EditInfo: EditInfo,
+  GetRenZhengInfo: GetRenZhengInfo,
+  close: close,
+  GetQianFengList: GetQianFengList,
+  GetVideoUrl: GetVideoUrl,
+  AddQianShou: AddQianShou };exports.default = _default;
 
 /***/ }),
 /* 18 */

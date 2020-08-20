@@ -161,7 +161,46 @@ export const EditInfo = (data) => {
 		// handle:true
     })
 }
-
+export const GetRenZhengInfo = (data) => {
+    return http.request({
+        url:'GetRenZhengInfo',
+		method: 'POST', 
+        data,
+		// handle:true
+    })
+}
+export const close = (data) => {
+    return http.request({
+        url:'close',
+		method: 'POST', 
+        data,
+		// handle:true
+    })
+}
+export const GetQianFengList = (data) => {
+    return http.request({
+        url:'GetQianFengList',
+		method: 'POST', 
+        data,
+		// handle:true
+    })
+}
+export const GetVideoUrl = (data) => {
+    return http.request({
+        url:'GetVideoUrl',
+		method: 'POST', 
+        data,
+		// handle:true
+    })
+}
+export const AddQianShou = (data) => {
+    return http.request({
+        url:'AddQianShou',
+		method: 'POST', 
+        data,
+		// handle:true
+    })
+}
 // 默认全部导出  import api from '@/common/vmeitime-http/'
 export default {
 login,
@@ -180,5 +219,10 @@ GetOpenId,
 RenZheng,
 GetOrderList,
 GetPhoto,
-EditInfo
+EditInfo,
+GetRenZhengInfo,
+close,
+GetQianFengList,
+GetVideoUrl,
+AddQianShou
 }
